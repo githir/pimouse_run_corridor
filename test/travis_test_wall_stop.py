@@ -32,6 +32,11 @@ class WallStopTest(unittest.TestCase):
         left, right = self.get_freqs()
         self.assertTrue(left != 0 and right != 0,"can't move again")
 
+        self.set_sensor_values(150,0,200,150)
+        time.sleep(0.3)
+        left, right = self.get_freqs()
+        self.assertTrue(left == 0 and right == 0,"can't stop")
+
 if __name__ == '__main__':
     time.sleep(3)
     rospy.init_node('travis_test_wall_stop')

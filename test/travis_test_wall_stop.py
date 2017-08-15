@@ -30,12 +30,19 @@ class WallStopTest(unittest.TestCase):
         self.set_sensor_values(400,0,0,99)
         time.sleep(0.3)
         left, right = self.get_freqs()
-        self.assertTrue(left != 0 and right != 0,"can't move again")
+        self.assertTrue(0 < left == right < 1000 ,"can't move again")
 
-        self.set_sensor_values(150,0,200,150)
+        time.sleep(5.0)
+
+        self.set_sensor_values(400,0,0,99)
         time.sleep(0.3)
         left, right = self.get_freqs()
-        self.assertTrue(left == 0 and right == 0,"can't stop")
+        self.assertTrue(2000 < left == right,"can't accerelate")
+
+        self.set_sensor_values(100,0,200,150)
+        time.sleep(0.3)
+        left, right = self.get_freqs()
+        self.assertTrue(left == 0 and right == 0,"can't stop again")
 
 if __name__ == '__main__':
     time.sleep(3)

@@ -24,16 +24,16 @@ class WallTrace():
         rate = rospy.Rate(10)
         data = Twist()
 
-        accel = 0.02
+        accel = 0.01
         data.linear.x = 0.0
         data.angular.z = 0
         while not rospy.is_shutdown():
             data.linear.x += accel
 
-            if self.sensor_values.sum_all > 50:
+            if self.sensor_values.sum_all > 1500:
                 data.linear.x = 0
-            elif data.linear.x <= 0.2:
-                data.linear.x = 0.2
+            elif data.linear.x <= 0.02:
+                data.linear.x = 0.02
             elif data.linear.x >= 0.8:
                 data.linear.x = 0.8
 
